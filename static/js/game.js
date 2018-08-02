@@ -19,8 +19,7 @@
 var href = location.href;
 var gameID = href.match(/([^\/]*)\/*$/)[1]
 console.log(gameID)
-console.log("location protocal: " + location.protocol)
-var socket = io.connect('https' + '//' + document.domain + ':' + location.port + `/${gameID}`);
+var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + `/${gameID}`);
 
 
 var debugmode = false;

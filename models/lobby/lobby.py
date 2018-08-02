@@ -82,9 +82,10 @@ class Lobby(object):
             raise ValueError('Sorry username already taken')
 
     def run_lobby_sockets(self,socketio):
+        print('RUNNING LOBBY SOCKETS')
         @socketio.on('connect',namespace=f'/{self.lobby_id}')
         def connect():
-            print("CONNECTING")
+            print("CONNECTING LOBBY SOCKETS")
             username = session['username']
             #room = session['room']
             #join_room(room)
@@ -107,7 +108,7 @@ class Lobby(object):
 
         @socketio.on('chat',namespace=f'/{self.lobby_id}')
         def message(data):
-            #strip tags for sercurity
+            #strip tags for security
             chat = re.sub('<[^<]+?>', '', data['message'])
             data['message'] = chat
             emit('chat_broadcast', data , broadcast=True)
