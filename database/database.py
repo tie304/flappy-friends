@@ -12,6 +12,7 @@ class Database(object):
         #only way to access it is through database object
         client = pymongo.MongoClient(URI)
         Database.DATABASE = client[database_name]
+        print(database.DATABASE)
 
     @staticmethod
     def insert(collection, data):
