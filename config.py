@@ -6,4 +6,4 @@ class Config:
             self.database_URI = "mongodb://tyler:1youngsavage@ds127443.mlab.com:27443/flappy_friends_dev"
         else:
             self.database_URI = 'mongodb://127.0.0.1:27017'
-        self.database_name = 'flappy_friends'
+        self.database_name = 'flappy_friends_dev'
