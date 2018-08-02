@@ -1,0 +1,54 @@
+{% extends "base.html "%} {% block content %}
+<div class="dashboard--header">
+  <h1>Hello {{session['username']}}</h1>
+
+</div>
+<div class="container dashboard">
+    <div class="card dashboard--matchmake">
+      <img class="card-img-top" src="{{url_for('static',filename='assets/images/flappy_multiplayer.gif')}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Matchmake</h5>
+        <p class="card-text">Search for a random game</p>
+        <form method="post" id="dashboard--matchmake_form">
+          <button type="submit" class="btn btn-primary" id="dashboard--start_matchmake-button">Start</button>
+        </form>
+      </div>
+    </div>
+
+  <div class="dashboard--statistics">
+    <div class="row">
+      <div class="col-sm">
+        <h2>Total Score</h2>
+        <div id="dashboard--total_score"></div>
+      </div>
+      <div class="col-sm">
+          <h2>Total Wins</h2>
+          <div id="dashboard--total_wins"></div>
+      </div>
+      <div class="col-sm">
+          <h2>Total Defeats</h2>
+          <div id="dashboard--total_defeats"></div>
+      </div>
+    </div>
+        <a href="{{url_for('leaderboard.leaderboard')}}" id="dashboard--leaderboard_button" class="btn btn-primary"> 💯 Leaderboard 💯</a>
+  </div>
+</div>
+
+
+
+</div>
+  <script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
+  <script>
+
+    window.onload = function() {
+      new Dashboard({{stats['total_score']}},{{stats['total_wins']}},{{stats['total_defeats']}})
+    }
+
+
+
+
+  </script>
+
+
+
+{% endblock %}

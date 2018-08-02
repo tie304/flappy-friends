@@ -1,0 +1,27 @@
+{% extends "base.html "%} {% block content %}
+
+
+<div class="landing-page-container">
+  <div class="container" id="landing-container">
+    <div class="jumbotron">
+      <h1 class="display-4">Flappy Friends</h1>
+      <p class="lead">Will you survice?</p>
+      <hr class="my-4">
+      <p>A reccreation of "Flappy Bird", only it's multiplayer. Play in real time with your friends... or your enimies.</p>
+      {% if session['username']%}
+      <p class="lead">
+        <a class="landing-action-button btn-lg" href="./dashboard/{{session['username']}}" role="button">Play Now!</a>
+      </p>
+      {% else %}
+      <p class="lead">
+        <a class="landing-action-button btn-lg" href="./lobby" role="button">Play Now!</a>
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html "%} {% block content %}
+<div class="container signin-container">
+  <h1>Flappy Friends</h1>
+  <form method="post">
+    <div class="input-group input-group-lg" style="margin-top: 5rem">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Birdname?</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" name="username">
+    </div>
+    <div class="input-group input-group-lg" style="margin-top: 5rem">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Email</span>
+      </div>
+      <input type="email" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" name="email">
+    </div>
+    <button type="submit" class="signin-submit-button btn-lg">Play Now!</button>
+  </form>
+</div>
+
+{% endblock %}
