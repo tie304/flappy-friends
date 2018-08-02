@@ -21,7 +21,7 @@ def init_db():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('./landing/home.html')
 
 
 Games(socketio)
