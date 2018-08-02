@@ -7,4 +7,3 @@ class Config:
         else:
             self.database_URI = 'mongodb://127.0.0.1:27017'
         self.database_name = 'flappy_friends'
-        self.LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
