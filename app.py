@@ -7,7 +7,7 @@ from models.games.games import Games
 from models.matchmaking.matchmaking import Matchmaking
 
 
-config = Config()
+config = Config('production')
 
 
 app = Flask(__name__)
