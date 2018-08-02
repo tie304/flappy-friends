@@ -18,6 +18,7 @@ app.secret_key = config.secret_key
 @app.before_first_request
 def init_db():
     Database.initialize(config.database_URI,config.database_name)
+    print(config.database_URI)
 
 @app.route('/')
 def home():
