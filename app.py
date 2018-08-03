@@ -14,7 +14,7 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 app.secret_key = config.secret_key
 
-print('app running')
+
 @app.before_first_request
 def init_db():
     Database.initialize(config.database_URI,config.database_name)
