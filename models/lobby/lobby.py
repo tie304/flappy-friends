@@ -84,13 +84,9 @@ class Lobby(object):
     def run_lobby_sockets(self,socketio):
         print('RUNNING LOBBY SOCKETS')
         @socketio.on('connect',namespace=f'/{self.lobby_id}')
-        def connect():
-            print("CONNECTING LOBBY SOCKETS")
+        def connect():            
             username = session['username']
-            #room = session['room']
-            #join_room(room)
-
-            emit('message_board', {'user': session['username'], 'message': username + ' has entered the room.'})
+            emit('message_board', {'user': session['username'], 'message': username + ' has entered the game.'})
 
         @socketio.on('ready_to_play',namespace=f'/{self.lobby_id}')
         def message(data):
@@ -101,9 +97,7 @@ class Lobby(object):
         def disconnect():
             print('DISCONNECTING')
             email = session['email']
-            #room = session['room']
             self.remove_player(email)
-            #leave_room(room)
             emit('message_board',{'user': session['username'], 'message': username + ' has left the room.'})
 
         @socketio.on('chat',namespace=f'/{self.lobby_id}')

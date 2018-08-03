@@ -43,14 +43,16 @@
          <div id="gamescreen">
             <div id="sky" class="animated">
               <!-- Redirects to dashboard-->
-              <div id="return-to-menu"><a href="{{url_for('dashboard.dashboard', username=session['username'])}}">Exit to Menu</a></div>
+
+                <a href="{{url_for('dashboard.dashboard', username=session['username'])}}" id="return-to-menu">Exit to Menu</a>
+
                <div id="flyarea">
 
                   <div id="ceiling" class="animated"></div>
 
                   <!-- This is the flying and pipe area container -->
                   <div id="player" class="bird animated player"></div>
-                  <div id="player_2" class="bird animated player"></div>
+                  <div id="player_2" class="bird-red animated player"></div>
 
                   <div id="bigscore"></div>
 
@@ -74,11 +76,7 @@
             <div id="land" class="animated"><div id="debug"></div></div>
          </div>
       </div>
-      <div id="footer">
-         <a href="http://www.dotgears.com/">original game/concept/art by dong nguyen</a>
-         <a href="http://nebezb.com/">recreated by nebez briefkani</a>
-         <a href="http://github.com/nebez/floppybird/">view github project</a>
-      </div>
+
       <div class="boundingbox" id="playerbox"></div>
       <div class="boundingbox" id="pipebox"></div>
 

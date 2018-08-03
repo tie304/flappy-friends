@@ -1,6 +1,6 @@
 /*
-   Copyright 2014 Nebez Briefkani
-   floppybird - main.js
+   Copyright 2018 Tyler Hanson
+   Flappy Friends - main.js
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 var href = location.href;
 var gameID = href.match(/([^\/]*)\/*$/)[1]
-console.log(gameID)
+
 var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + `/${gameID}`);
 
 
@@ -81,9 +81,7 @@ $(document).ready(function() {
     pipeheight = 200;
 
   //get the highscore
-  var savedscore = getCookie("highscore");
-  if (savedscore != "")
-    highscore = parseInt(savedscore);
+
 
   //start with the splash screen
   showSplash();
@@ -101,9 +99,7 @@ function webSockets() {
     console.log(clients)
   });
 
-  socket.on('message', (data) => {
-    console.log(data)
-  })
+
 
   socket.on('initalize_game', (data) => {
 
@@ -145,7 +141,13 @@ function webSockets() {
     } else {
       $('#player_2').hide()
     }
-  })
+    soundHit.play().bindOnce("ended", function() {
+      soundDie.play().bindOnce("ended", function() {
+
+      });
+    });
+
+  });
 
   socket.on('game_ended', (data) => {
     $(".animated").css('animation-play-state', 'paused');
@@ -168,36 +170,12 @@ function countDown(i) {
     $('#countdown').empty();
     $('#countdown').append("<img src='/static/assets/font_big_" + i + ".png' alt='" + i + "'>")
     i-- || clearInterval(int); //if i is 0, then stop the interval
-    console.log(i)
     if (i == -1) {
       $('#countdown').remove()
     }
   }, 1000);
-
-
-
-
-
-
 }
 
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i].trim();
-    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-  }
-  return "";
-}
-
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + d.toGMTString();
-  document.cookie = cname + "=" + cvalue + "; " + expires;
-}
 
 function showSplash() {
   currentstate = states.SplashScreen;
@@ -536,7 +514,7 @@ function playerDead() {
     //play the hit sound (then the dead sound) and then show score
     soundHit.play().bindOnce("ended", function() {
       soundDie.play().bindOnce("ended", function() {
-        //showScore();
+
       });
     });
   }
@@ -556,7 +534,7 @@ function showScore(data) {
     //yeah!
     highscore = score;
     //save it!
-    setCookie("highscore", highscore, 999);
+
   }
 
   //update the scoreboard
@@ -631,9 +609,7 @@ $("#replay").click(function() {
 });
 
 function playerScore() {
-
   score += 1;
-  console.log(score)
   socket.emit('update_score', score)
   //play score sound
   soundScore.stop();
@@ -649,12 +625,6 @@ function updatePipes() {
 
   var pipe = $(server_pipes[server_pipes_iter])
 
-  //add a new pipe (top height + bottom height  + pipeheight == flyArea) and put it in our tracker
-  //var padding = 80;
-  //var constraint = flyArea - pipeheight - (padding * 2); //double padding (for top and bottom)
-  //var topheight = Math.floor((Math.random()*constraint) + padding); //add lower padding
-  //var bottomheight = (flyArea - pipeheight) - topheight;
-  //var newpipe = $('<div class="pipe animated"><div class="pipe_upper" style="height: ' + topheight + 'px;"></div><div class="pipe_lower" style="height: ' + bottomheight + 'px;"></div></div>');
   $("#flyarea").append(pipe);
   pipes.push(pipe);
 

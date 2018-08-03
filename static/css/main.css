@@ -220,20 +220,24 @@ Screen - Game
   text-align: center;
   color: #fff;
   font-size: 20px;
-  margin-top: 50px;
-  z-index: 999;
-}
-
-#return-to-menu a {
+  margin-top: 8vh;
   color: #fff;
   text-decoration: none;
-  margin-top: 10px;
+  display: inline-block;
+  position:absolute;
+  left:50%;
+  transform: translateX(-50%);
   border: 2px solid #fff;
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  z-index: 999;
+  z-index: 99;
+
+}
+
+#return-to-menu a {
+
 }
 
 #countdown {
@@ -246,7 +250,7 @@ Screen - Game
 #game_over {
   margin-left: 50px;
   font-size: 25px;
-  z-index: 99;
+  z-index: 9;
 }
 
 #countdown img {
@@ -395,7 +399,18 @@ Screen - Game
    position: absolute;
    width: 34px;
    height: 24px;
-   background-image: url('../assets/bird.png');
+   background-image: url('../assets/bird_yellow.png');
+
+   -webkit-animation: animBird 300ms steps(4) infinite;
+   animation: animBird 300ms steps(4) infinite;
+}
+
+.bird-red
+{
+   position: absolute;
+   width: 34px;
+   height: 24px;
+   background-image: url('../assets/bird_red.png');
 
    -webkit-animation: animBird 300ms steps(4) infinite;
    animation: animBird 300ms steps(4) infinite;
