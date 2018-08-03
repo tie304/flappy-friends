@@ -221,6 +221,7 @@ Screen - Game
   color: #fff;
   font-size: 20px;
   margin-top: 20px;
+  z-index: 999;
 }
 
 #return-to-menu a {
@@ -232,7 +233,9 @@ Screen - Game
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
+  z-index: 999;
 }
+
 #countdown {
   position: absolute;
   top: 20px;
