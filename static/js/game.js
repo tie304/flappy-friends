@@ -112,6 +112,7 @@ function webSockets() {
     //if any of the players previously died show them again
     $('#player').show()
     $('#player_2').show()
+    $('#ceiling').show()
     //hides return to menu button
     $('#return-to-menu').hide()
     //get get incoming pipe data from server
@@ -129,7 +130,6 @@ function webSockets() {
 
 
   socket.on('play_again', (data) => {
-
     $('.play-again').text(data.message)
     $('.play-again').css('text-align', 'center')
     $('.play-again').css('left', '')
@@ -137,15 +137,9 @@ function webSockets() {
 
 
   socket.on('update_player_position', (data) => {
-    console.log(data.position)
     player2position = data.position
     player2velocity = jump
-    //console.log(passed)
-    //  console.log(data)
-    console.log(data)
-    //$('#player_2').css({ rotate: player2rotation, top: data.position });
-
-  })
+  });
 
   socket.on('player_dead', (data) => {
     if (data.username === USERNAME) {
@@ -159,12 +153,11 @@ function webSockets() {
     $(".animated").css('animation-play-state', 'paused');
     $(".animated").css('-webkit-animation-play-state', 'paused');
     $('#return-to-menu').show()
-    console.log(data)
+    $('#ceiling').hide();
     clearInterval(loopPipeloop)
     loopPipeloop = null;
     clearInterval(multiplayerLoop)
     multiplayerLoop = null;
-    //clearInterval(loopGameloop);
     showScore(data)
   });
   socket.on('reset_game', (data) => {
