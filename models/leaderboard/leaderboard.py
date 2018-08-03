@@ -2,7 +2,6 @@ from database.database import Database
 
 
 class Leaderboard(object):
-
     def __init__(self):
         pass
 
@@ -12,6 +11,5 @@ class Leaderboard(object):
          return [leader for leader in data]
 
     @staticmethod
-    def search_user(search):
-        print(search)
+    def search_user(search):        
         return [user for user in Database.find('users', {"$or": [{'email':search['name']}, {'display_name': search['name']}]})]

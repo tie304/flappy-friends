@@ -243,6 +243,7 @@ Screen - Game
 #game_over {
   margin-left: 50px;
   font-size: 25px;
+  z-index: 99;
 }
 
 #countdown img {
