@@ -112,7 +112,7 @@ function webSockets() {
     //if any of the players previously died show them again
     $('#player').show()
     $('#player_2').show()
-    $('#ceiling').show()
+
     //hides return to menu button
     $('#return-to-menu').hide()
     //get get incoming pipe data from server
@@ -124,9 +124,7 @@ function webSockets() {
     }, data.start);
 
   })
-  socket.on('starting_game', (data) => {
-    console.log(data)
-  })
+
 
 
   socket.on('play_again', (data) => {
@@ -153,7 +151,6 @@ function webSockets() {
     $(".animated").css('animation-play-state', 'paused');
     $(".animated").css('-webkit-animation-play-state', 'paused');
     $('#return-to-menu').show()
-    $('#ceiling').hide();
     clearInterval(loopPipeloop)
     loopPipeloop = null;
     clearInterval(multiplayerLoop)
