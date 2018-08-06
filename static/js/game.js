@@ -374,6 +374,16 @@ $(document).keydown(function(e) {
   }
 });
 
+window.addEventListener(
+    "touchmove",
+    function(event) {
+        if (event.scale !== 1) {
+            event.preventDefault();
+        }
+    },
+    { passive: false }
+);
+
 //Handle mouse down OR touch start
 if ("ontouchstart" in window) {
   $(document).on("touchstart", screenClick);
