@@ -375,23 +375,21 @@ $(document).keydown(function(e) {
 });
 
 //Handle mouse down OR touch start
-if ("ontouchstart" in window)
+if ("ontouchstart" in window) {
   $(document).on("touchstart", screenClick);
-else
+} else {
   $(document).on("mousedown", screenClick);
+}
 
 function screenClick() {
   if (currentstate == states.GameScreen) {
     playerJump();
   } else if (currentstate == states.SplashScreen) {
     //startGame();
-
   }
 }
 
 function playerJump() {
-
-
   velocity = jump;
   //play jump sound
   soundJump.stop();
