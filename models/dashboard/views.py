@@ -14,6 +14,5 @@ def dashboard(username):
     if request.method == "POST":
         lobby = Matchmaking().create_lobby()
         return redirect(f'/lobby/{lobby}')
-    stats = Dashboard().get_player_stats()
-    print(stats)
+    stats = Dashboard().get_player_stats()    
     return render_template('dashboard/dashboard.html',stats=stats)

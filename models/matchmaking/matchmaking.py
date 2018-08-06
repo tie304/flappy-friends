@@ -17,12 +17,11 @@ class Matchmaking(object, metaclass=Singleton):
     def create_lobby(self):
         print(self.lobbies)
         for lobby in self.lobbies:
+            print(lobby)
             #if 1 player already in lobby add other player to it
             if len(lobby.players) == 1:
                 self.add_player_to_lobby(lobby)
-                print(self.lobbies)
                 self.delete_lobby()
-                print(self.lobbies)
                 return lobby.lobby_id
         lobby = Lobby(self.socketio)
         lobby.add_to_room(session['username'])
