@@ -22,10 +22,10 @@ class Lobby(object):
 
     def add_to_room(self,player):
         self.players.append({
-            'player': player,
+            'email': player,
             'room_id': self.lobby_id,
             'ready': False
-        })
+        });
 
         return self.lobby_id
         """
@@ -35,9 +35,8 @@ class Lobby(object):
         """
     def update_player_ready_status(self,user):
         print('updating player statuses')
-
         for idx, player in enumerate(self.players):
-            if player['player'] == user:
+            if player['email'] == user:
                 self.players[idx]['ready'] = True
         if self.check_player_statuses():
             return self.initalize_game(user)
@@ -49,7 +48,7 @@ class Lobby(object):
 
     def remove_player(self,email):
         for player in self.players:
-            if email == player.email:
+            if email == player['email']:
                 player_index_position = self.players.index(player)
                 del self.players[player_index_position]
 
@@ -84,7 +83,7 @@ class Lobby(object):
     def run_lobby_sockets(self,socketio):
         print('RUNNING LOBBY SOCKETS')
         @socketio.on('connect',namespace=f'/{self.lobby_id}')
-        def connect():            
+        def connect():
             username = session['username']
             emit('message_board', {'user': session['username'], 'message': username + ' has entered the game.'})
 
@@ -98,7 +97,7 @@ class Lobby(object):
             print('DISCONNECTING')
             email = session['email']
             self.remove_player(email)
-            emit('message_board',{'user': session['username'], 'message': username + ' has left the room.'})
+            emit('message_board',{'user': session['username'], 'message': session['username'] + ' has left the room.'})
 
         @socketio.on('chat',namespace=f'/{self.lobby_id}')
         def message(data):
