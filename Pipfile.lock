@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eb4302f9dc5fa9da7021d38c40eeb48a131dc21ef20541cef5dd1cdd277ae0dc"
+            "sha256": "17278619089a2d2a24a05c98ad05d5155676cfe18d96fac51542931b35304210"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -32,11 +32,11 @@
         },
         "eventlet": {
             "hashes": [
-                "sha256:4c247db031ea374128e8c75a40fe5402c611e9a4798b9f90f095001192f22364",
-                "sha256:8469811e6b49a8de6de11329de4b76e961e687fc24201546b85de69056535add"
+                "sha256:c584163e006e613707e224552fafc63e4e0aa31d7de0ab18b481ac0b385254c8",
+                "sha256:d9d31a3c8dbcedbcce5859a919956d934685b17323fc80e1077cb344a2ffa68d"
             ],
             "index": "pypi",
-            "version": "==0.24.0"
+            "version": "==0.24.1"
         },
         "flask": {
             "hashes": [
@@ -111,6 +111,14 @@
                 "sha256:552a91f381532e33cbd07c6a2655a21908088962bb8fa7239ecbcc6ad1140cc7"
             ],
             "version": "==1.5"
+        },
+        "passlib": {
+            "hashes": [
+                "sha256:3d948f64138c25633613f303bcc471126eae67c04d5e3f6b7b8ce6242f8653e0",
+                "sha256:43526aea08fa32c6b6dbbbe9963c4c767285b78147b7437597f992812f69d280"
+            ],
+            "index": "pypi",
+            "version": "==1.7.1"
         },
         "pymongo": {
             "hashes": [

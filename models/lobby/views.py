@@ -20,8 +20,10 @@ def index():
     if request.method == "POST":
         username = request.form['username']
         email = request.form['email']
+        password = request.form['password']
+        
         #TODO need to handle errors
-        User.register_user(email,username)
+        User.register_user(email,username, password)
 
         session['username'] = username
         session['email'] = email

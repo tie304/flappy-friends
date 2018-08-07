@@ -9,6 +9,7 @@ flask-socketio = "*"
 pymongo = "*"
 gunicorn = "*"
 eventlet = "*"
+passlib = "*"
 
 [dev-packages]
 
