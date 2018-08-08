@@ -70,6 +70,10 @@ class Lobby {
 
       if (data.both_connected) {
           this.bothConnected = true
+          $('#ready_to_play').show();
+          $('.lobby--choose_bird').show();
+          $('#lobby--waiting-info').hide();
+
       }
       //call again to init the event listiners
       this.eventListen()
@@ -88,7 +92,7 @@ class Lobby {
       if (data.selected_bird === "redbird") {
         $('#redbird').hide();
         }
-        
+
         if (data.username === USERNAME) {
           this.birdSelected = true
         }

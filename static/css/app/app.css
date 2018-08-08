@@ -9,6 +9,9 @@
 
 body {
   background-color: #DFD796;
+  height: 100vh;
+  background: url('../../assets/images/background_lobby.svg');
+  background-color:  #DFD796;
 }
 .navbar {
   background-color: #fff;
@@ -135,13 +138,23 @@ body {
   transition: all 0.3s ease;
 }
 /*Leaderboard END----------------------------------------------------- END*/
-.lobby {
-  margin-top: 1rem;
+.lobby-dashboard-inner{
+
+  margin-top: 12rem;
   border: 5px solid #9DE759;
   background-color: #fff;
   padding: 2rem;
   border-radius: 5px;
   text-align: center;
+}
+
+.lobby {
+
+
+}
+
+.lobby--body {
+
 }
 
 .lobby--choose_bird img:first-child {
@@ -150,8 +163,9 @@ body {
 .lobby--choose_bird img:last-child {
   margin-left: 20px;
 }
-
-
+.lobby--choose_bird {
+  display: none;
+}
 /*Waiting room ---------------------------------------------*/
 #lobby--message_board li {
   padding: 50px 50px;
@@ -181,7 +195,9 @@ body {
 	}
 
   #ready_to_play {
-    background-color: #9DE759
+    background-color: #9DE759;
+    display: none;
+
   }
 
 
