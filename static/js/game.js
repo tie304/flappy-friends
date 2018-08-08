@@ -21,7 +21,6 @@ var gameID = href.match(/([^\/]*)\/*$/)[1]
 
 var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + `/${gameID}`);
 
-
 var debugmode = false;
 
 var states = Object.freeze({
@@ -96,13 +95,12 @@ function webSockets() {
     $('#player').prepend( `<p class="player_name">${USERNAME}</p>` );
     console.log('connected')
     socket.emit('entered_game')
-    console.log(socket.id)
+
   });
 
 
   socket.on('player_bird',(data) => {
-
-  console.log(data.bird)
+    console.log(data.bird)
 
     if (data.bird === "yellowbird") {
       $('#player').addClass('bird')
@@ -129,19 +127,20 @@ function webSockets() {
     //hides return to menu button
     $('#return-to-menu').hide()
     //get get incoming pipe data from server
-    console.log(data)
+
     server_pipes = data.pipes
+    console.log(server_pipes)
     //set the game countdown and after 3 seconds start the game for each client
     countDown(2);
     setTimeout(function() {
       startGame()
     }, data.start);
-
-  })
+  });
 
 
 
   socket.on('play_again', (data) => {
+    console.log(data)
     $('.play-again').text(data.message)
     $('.play-again').css('text-align', 'center')
     $('.play-again').css('left', '')
@@ -149,6 +148,7 @@ function webSockets() {
 
 
   socket.on('update_player_position', (data) => {
+    console.log('updating player position')
     player2position = data.position
     player2velocity = jump
   });
@@ -164,10 +164,10 @@ function webSockets() {
 
       });
     });
-
   });
 
   socket.on('game_ended', (data) => {
+    console.log('game ended')
     $(".animated").css('animation-play-state', 'paused');
     $(".animated").css('-webkit-animation-play-state', 'paused');
     $('#return-to-menu').show()
@@ -177,12 +177,10 @@ function webSockets() {
     multiplayerLoop = null;
     showScore(data)
   });
-  socket.on('reset_game', (data) => {
-
-  })
 }
 
 function countDown(i) {
+  console.log('countdown')
   $('#flyarea').append('<div id="countdown"></div>')
   var int = setInterval(function() {
     $('#countdown').empty();
