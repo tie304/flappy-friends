@@ -4,6 +4,8 @@ class Lobby {
   constructor() {
     this.lobbyID = location.href.match(/([^\/]*)\/*$/)[1]
     this.socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + `/${this.lobbyID}`);
+    this.bothConnected = false
+    this.birdSelected = false
     window.onload = () => {
       this.connect()
     }
@@ -27,13 +29,20 @@ class Lobby {
     });
 
     $('#ready_to_play').click(() => {
-      this.startGame()
+      if (this.birdSelected === true) {
+        this.startGame()
+      } else {
+        alert('please select a bird')
+      }
     });
-
-    $('#redbird, #yellowbird').click((e) => {
-      console.log(e.target.id)
-        this.socket.emit('bird_selection', {'bird': e.target.id})
-    });
+    // Bird selection
+    console.log(this.bothConnected)
+    if (this.bothConnected) {
+      $('#redbird, #yellowbird').click((e) => {
+        console.log(e.target.id)
+          this.socket.emit('bird_selection', {'bird': e.target.id})
+      });
+    }
   }
 
   runSockets() {
@@ -50,29 +59,41 @@ class Lobby {
           <a class="float-left sohbet2"> ${data.message} </a>
         </div>`)
       }
+    });
 
-    })
 
     this.socket.on('message_board', (data) => {
+      console.log('client connected')
+      console.log(data)
+
+      //if both clients are connected
+
+      if (data.both_connected) {
+          this.bothConnected = true
+      }
+      //call again to init the event listiners
+      this.eventListen()
+      // On game start redirect user to game
       if (data.starting) {
         $('#ready_to_play').text(data.message)
         window.location.href = 'http://' + document.domain + ':' + location.port + `/game/${this.lobbyID}`
       }
-      $('#lobby--message_board').prepend(`<li>${data.message}</li>`)
-
+      $('#lobby--message_board').prepend(`<li>${data.message}</li>`);
     });
 
     this.socket.on('selected_bird', (data) => {
       if (data.selected_bird === "yellowbird") {
-        $('#yellowbird').hide()
+        $('#yellowbird').hide();
       }
       if (data.selected_bird === "redbird") {
-        $('#redbird').hide()
+        $('#redbird').hide();
         }
+        
+        if (data.username === USERNAME) {
+          this.birdSelected = true
+        }
+
     });
-
-
-
   }
   startGame() {
     this.socket.emit('ready_to_play', {
@@ -80,6 +101,5 @@ class Lobby {
     });
     $('#ready_to_play').text('waiting on other player').off()
   }
-
 }
 new Lobby()

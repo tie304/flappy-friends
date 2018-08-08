@@ -9,6 +9,7 @@ from models.player.player import Player
 
 
 class Lobby(object):
+
     def __init__(self,socketio):
         self.socketio = socketio
         self.players = []
@@ -42,7 +43,11 @@ class Lobby(object):
             return {'user': user, 'message': user + ' is ready to play!'}
 
 
+    """
 
+    Removes player from players list on disconnect event
+
+    """
 
     def remove_player(self,email):
         for player in self.players:
@@ -88,9 +93,11 @@ class Lobby(object):
         print('RUNNING LOBBY SOCKETS')
         @socketio.on('connect',namespace=f'/{self.lobby_id}')
         def connect():
-            self.players.append(Player(session['username'], session['email']));
-            username = session['username']
-            emit('message_board', {'user': session['username'], 'message': username + ' has entered the game.'})
+            self.players.append(Player(session['username'], session['email']))
+            both_connected = False
+            if len(self.players) == 2:
+                both_connected = True
+            emit('message_board', {'user': session['username'], 'message': session['username'] + ' has entered the game.', 'both_connected': both_connected}, broadcast=True)
 
         @socketio.on('ready_to_play',namespace=f'/{self.lobby_id}')
         def message(data):
@@ -114,14 +121,7 @@ class Lobby(object):
                     print(self.available_birds)
                     del self.available_birds[self.available_birds.index(bird['bird'])]
                     print(self.available_birds)
-                    emit('selected_bird', {'selected_bird': bird['bird']}, broadcast=True)
-
-
-
-
-
-
-
+                    emit('selected_bird', {'selected_bird': bird['bird'], 'username': session['username']}, broadcast=True)
 
 
 
