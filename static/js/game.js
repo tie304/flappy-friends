@@ -391,15 +391,15 @@ $(document).keydown(function(e) {
 });
 
 //STOPS IOS DOUBLE TAP ZOOM IN
-window.addEventListener(
-    "touchmove",
-    function(event) {
-        if (event.scale !== 1) {
-            event.preventDefault();
-        }
-    },
-    { passive: false }
-);
+///window.addEventListener(
+    ///"touchmove",
+    ///function(event) {
+        ///if (event.scale !== 1) {
+          ///  event.preventDefault();
+        ///}
+  ///  },
+    ///{ passive: false }
+///);
 
 //Handle mouse down OR touch start
 if ("ontouchstart" in window) {
@@ -547,7 +547,6 @@ function playerDead() {
 }
 
 function showScore(data) {
-
   //unhide us
   $("#scoreboard").css("display", "block");
 
