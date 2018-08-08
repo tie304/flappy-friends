@@ -2,7 +2,7 @@
 
 
 
-
+/* Global*/
 * {
   font-family: monospace;
 }
@@ -10,7 +10,9 @@
 body {
   background-color: #DFD796;
 }
-
+.navbar {
+  background-color: #fff;
+}
 
 
 /*_______________________Waiting Room________________________________*/
@@ -84,12 +86,6 @@ body {
   padding: 20px;
 }
 
-.dashboard--header {
-  margin-bottom: 10px;
-  background-color: #fff;
-  text-align: center;
-  padding-bottom: 10px;
-}
 
 #dashboard--start_matchmake-button,#dashboard--change_name-button, #dashboard--leaderboard_button {
   background-color: #9DE759;
@@ -145,12 +141,21 @@ body {
   background-color: #fff;
   padding: 2rem;
   border-radius: 5px;
+  text-align: center;
+}
+
+.lobby--choose_bird img:first-child {
+  margin-right: 20px;
+}
+.lobby--choose_bird img:last-child {
+  margin-left: 20px;
 }
 
 
 /*Waiting room ---------------------------------------------*/
 #lobby--message_board li {
   padding: 50px 50px;
+  margin-top: 20px;
   background: #4EC0CA;
   list-style-type: none;
   color: #fff;

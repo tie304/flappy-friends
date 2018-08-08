@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,27 +15,34 @@
       console.log(USERNAME)
     </script>
   </head>
-
   <body>
-    <div class="landing-page-container">
-      <div class="container" id="landing-container">
-        <div class="jumbotron">
-          <h1 class="display-4">Flappy Friends</h1>
-          <p class="lead">Will you survive?</p>
-          <hr class="my-4">
-          <p>A reccreation of "Flappy Bird", only it's multiplayer. Play in real time with your friends... or your enimies.</p>
-          {% if session['email']%}
-          <p class="lead">
-            <a class="landing-action-button btn-lg" href="./dashboard/{{session['username']}}" role="button">Play Now!</a>
-          </p>
-          {% else %}
-          <p class="lead">
-            <a class="landing-action-button btn-lg" href="./users/register" role="button">Play Now!</a>
-          </p>
-          {% endif %}
+
+    <div class="container signin-container">
+      <h1>Flappy Friends</h1>
+      <form method="post">
+        <div class="input-group input-group-lg" style="margin-top: 5rem">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Email</span>
+          </div>
+          <input type="email" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" name="email">
         </div>
-      </div>
+        <div class="input-group input-group-lg" style="margin-top: 5rem">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-lg">password</span>
+          </div>
+          <input type="password" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" name="password">
+        </div>
+
+
+        <button type="submit" class="signin-submit-button btn-lg">Play Now!</button>
+      </form>
+      {% if error_message %}
+        <h2 style="color: red">{{error_message}}</h2>
+      {% endif %}
     </div>
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

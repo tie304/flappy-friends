@@ -11,11 +11,11 @@ class Games(object, metaclass=Singleton):
         self.games = []
         self.socketio = socketio
 
-    def add_game(self,game_id):
+    def add_game(self,game_id, players):
         for game in self.games:
             if game.game_id == game_id:
                 return None
-        return self.games.append(Game(game_id,self.socketio))
+        return self.games.append(Game(game_id, players, self.socketio))
 
 
     def remove_game(self):

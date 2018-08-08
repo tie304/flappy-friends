@@ -22,13 +22,18 @@ class Lobby {
       this.socket.emit('chat', {
         user: USERNAME,
         message: $('#text').val()
-      })
+      });
       $('#text').val("")
     });
 
     $('#ready_to_play').click(() => {
       this.startGame()
-    })
+    });
+
+    $('#redbird, #yellowbird').click((e) => {
+      console.log(e.target.id)
+        this.socket.emit('bird_selection', {'bird': e.target.id})
+    });
   }
 
   runSockets() {
@@ -55,7 +60,19 @@ class Lobby {
       }
       $('#lobby--message_board').prepend(`<li>${data.message}</li>`)
 
-    })
+    });
+
+    this.socket.on('selected_bird', (data) => {
+      if (data.selected_bird === "yellowbird") {
+        $('#yellowbird').hide()
+      }
+      if (data.selected_bird === "redbird") {
+        $('#redbird').hide()
+        }
+    });
+
+
+
   }
   startGame() {
     this.socket.emit('ready_to_play', {

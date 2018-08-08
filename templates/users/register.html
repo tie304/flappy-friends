@@ -38,6 +38,9 @@
           </div>
           <input type="password" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" name="password">
         </div>
+        {% if error_message %}
+          <h2 style="color: red">{{error_message}}</h2>
+        {% endif %}
         <button type="submit" class="signin-submit-button btn-lg">Play Now!</button>
       </form>
     </div>

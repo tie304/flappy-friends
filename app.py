@@ -28,11 +28,13 @@ def home():
 Games(socketio)
 Matchmaking(socketio)
 
+from models.users.views import users_blueprint
 from models.dashboard.views import dashboard_blueprint
 from models.lobby.views import lobby_blueprint
 from models.game.views import game_blueprint
 from models.leaderboard.views import leaderboard_blueprint
 
+app.register_blueprint(users_blueprint, url_prefix='/users')
 app.register_blueprint(lobby_blueprint, url_prefix='/lobby')
 app.register_blueprint(game_blueprint, url_prefix='/game')
 app.register_blueprint(dashboard_blueprint, url_prefix='/dashboard')

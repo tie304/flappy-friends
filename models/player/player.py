@@ -1,10 +1,13 @@
 from database.database import Database
 
 class Player:
-    def __init__(self,name, email, sid):
+    def __init__(self,name, email):
         self.name = name
         self.email = email
-        self.sid = sid
+        self.sid = None
+        self.bird = None
+        self.lobby_ready = False
+        self.in_game = False
         self.alive = True
         self.play_again = False
         self.score = 0

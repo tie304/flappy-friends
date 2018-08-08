@@ -17,11 +17,27 @@
   </head>
   <body>
 
-
-    <div class="dashboard--header">
-      <h1>Hello {{session['username']}}</h1>
-
+    <!-- Image and text -->
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="">
+    {{session['username']}}
+    </a>
+    
+    <div class="login-signout float-right">
+      {% if session['email'] %}
+      <a href="/users/logout">
+        <button class="btn btn-primary" id="dashboard--start_matchmake-button">Logout</button>
+      </a>
+      {% else %}
+      <a href="/users/login">
+        <button class="btn btn-primary" id="dashboard--start_matchmake-button">Login</button>
+      </a>
+      {% endif %}
     </div>
+  </nav>
+
+
+
     <div class="container dashboard">
         <div class="card dashboard--matchmake">
           <img class="card-img-top" src="{{url_for('static',filename='assets/images/flappy_multiplayer.gif')}}" alt="Card image cap">

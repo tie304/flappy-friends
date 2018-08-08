@@ -92,17 +92,34 @@ $(document).ready(function() {
 function webSockets() {
   var clients = []
   socket.on('connect', () => {
-    clients.push(socket.id)
+
     $('#player').prepend( `<p class="player_name">${USERNAME}</p>` );
     console.log('connected')
-    socket.emit('start_game')
-    console.log(clients)
+    socket.emit('entered_game')
+    console.log(socket.id)
+  });
+
+
+  socket.on('player_bird',(data) => {
+
+  console.log(data.bird)
+
+    if (data.bird === "yellowbird") {
+      $('#player').addClass('bird')
+      $('#player_2').addClass('bird-red')
+    }
+    if (data.bird === "redbird") {
+      $('#player').addClass('bird-red')
+      $('#player_2').addClass('bird')
+    }
+
+
   });
 
 
 
   socket.on('initalize_game', (data) => {
-
+    console.log('initalizing game')
     $('.play-again').css('text-align', '')
     $('.play-again').css('left', '61px')
     //if any of the players previously died show them again
@@ -112,6 +129,7 @@ function webSockets() {
     //hides return to menu button
     $('#return-to-menu').hide()
     //get get incoming pipe data from server
+    console.log(data)
     server_pipes = data.pipes
     //set the game countdown and after 3 seconds start the game for each client
     countDown(2);
@@ -374,6 +392,7 @@ $(document).keydown(function(e) {
   }
 });
 
+//STOPS IOS DOUBLE TAP ZOOM IN
 window.addEventListener(
     "touchmove",
     function(event) {

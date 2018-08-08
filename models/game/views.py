@@ -12,10 +12,11 @@ game_blueprint = Blueprint('game', __name__)
 
 
 @game_blueprint.route('/<string:game_id>')
+
 @requires_login
 def game_index(game_id):
-    Games().add_game(game_id)
+    #Games().add_game(game_id)
 
-    #TODO append player to each specific game
+
 
     return render_template('game/game.html')

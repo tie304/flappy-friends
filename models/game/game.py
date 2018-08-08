@@ -13,13 +13,12 @@ from models.player.player import Player
 
 class Game(object):
 
-    def __init__(self,game_id,socketio):
+    def __init__(self,game_id, players ,socketio):
         self.game_id = game_id
-        self.players = []
+        self.players = players
         self.pipes = []
         self.socketio = socketio
         self.run_game_sockets(self.socketio)
-
 
     def __repr__(self):
         return f"<Game with {len(self.players)} players>"
@@ -28,8 +27,12 @@ class Game(object):
         print(f'starting the game with {self.players}')
         self.render_pipes()
 
-    def check_players(self):
-        if len(self.players) == 2:
+    def check_players_in_game(self):
+        total_players_ready = 0
+        for player in self.players:
+            if player.in_game == True:
+                total_players_ready +=1
+        if total_players_ready == 2:
             self.start_game()
             return True
         return False
@@ -89,8 +92,22 @@ class Game(object):
         def connect():
             print("CONNECTING INGAME")
             username = session['username']
-            self.players.append(Player(session['username'],session['email'], request.sid))
-            emit('message', {'user': session['username'], 'message': username + ' has entered the game.'}, broadcast=True)
+
+            emit_player_bird = None
+
+            for player in self.players:
+                if player.name == session['username']:
+                    player.sid = request.sid
+                    player.in_game = True
+                    emit_player_bird = player.bird
+            print(emit_player_bird)
+            emit('player_bird', {'bird': emit_player_bird}, room=request.sid)
+
+
+
+
+            #self.players.append(Player(session['username'],session['email'], request.sid))
+
 
         @socketio.on('disconnect', namespace=f"/{self.game_id}")
         def disconnect():
@@ -100,9 +117,10 @@ class Game(object):
             emit('message',{'user': session['username'], 'message': username + ' has left the game.'})
 
 
-        @socketio.on('start_game', namespace=f"/{self.game_id}")
+        @socketio.on('entered_game', namespace=f"/{self.game_id}")
         def start_game():
-            if self.check_players():
+            if self.check_players_in_game():
+                print(len(self.pipes))
                 emit('initalize_game', {'pipes': self.pipes, 'start':3000 }, broadcast=True)
 
         @socketio.on('player_position', namespace=f"/{self.game_id}")
