@@ -23,9 +23,7 @@ class Game(object):
     def __repr__(self):
         return f"<Game with {len(self.players)} players>"
 
-    def start_game(self):
-        print(f'starting the game with {self.players}')
-        self.render_pipes()
+
 
     def check_players_in_game(self):
         total_players_ready = 0
@@ -33,7 +31,7 @@ class Game(object):
             if player.in_game == True:
                 total_players_ready +=1
         if total_players_ready == 2:
-            self.start_game()
+            self.render_pipes()
             return True
         return False
 
@@ -87,26 +85,20 @@ class Game(object):
 
 
     def run_game_sockets(self,socketio):
-        print('running sockets for ' + self.game_id)
+        print('running sockets for game:' + self.game_id)
         @socketio.on('connect', namespace=f"/{self.game_id}")
         def connect():
             print("CONNECTING INGAME")
+            print('request_id ' + request.sid)
             username = session['username']
-
             emit_player_bird = None
 
             for player in self.players:
                 if player.name == session['username']:
                     player.sid = request.sid
-                    player.in_game = True
                     emit_player_bird = player.bird
             print(emit_player_bird)
             emit('player_bird', {'bird': emit_player_bird}, room=request.sid)
-
-
-
-
-            #self.players.append(Player(session['username'],session['email'], request.sid))
 
 
         @socketio.on('disconnect', namespace=f"/{self.game_id}")
@@ -118,9 +110,13 @@ class Game(object):
 
 
         @socketio.on('entered_game', namespace=f"/{self.game_id}")
-        def start_game():
+
+        def initalize_game():
+            for player in self.players:
+                if player.sid == request.sid:
+                    player.in_game = True
             if self.check_players_in_game():
-                print(len(self.pipes))
+                print('entered game')
                 emit('initalize_game', {'pipes': self.pipes, 'start':3000 }, broadcast=True)
 
         @socketio.on('player_position', namespace=f"/{self.game_id}")
@@ -174,4 +170,4 @@ class Game(object):
             emit('play_again', {})
             if status:
                 self.reset()
-                start_game()
+                initalize_game()

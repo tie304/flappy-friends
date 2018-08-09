@@ -70,39 +70,29 @@ var test_time = Date.now()
 //loops
 var loopGameloop;
 var loopPipeloop;
-var multiplayerLoop
+var multiplayerLoop;
 
-$(window).load(() => {
+//when window is fully loaded including assets
+$(window).load(function() {
+  socket.emit('entered_game')
+});
 
-  webSockets()
-  if (window.location.search == "?debug")
-    debugmode = true;
-  if (window.location.search == "?easy")
-    pipeheight = 200;
-
-  //get the highscore
-
-
-  //start with the splash screen
+$(document).ready(function() {
+  //all websockets events
+  webSockets();
   showSplash();
-
-
 });
 
 
 function webSockets() {
-  var clients = []
+  console.log('websockets running')
   socket.on('connect', () => {
-
     $('#player').prepend( `<p class="player_name">${USERNAME}</p>` );
     console.log('connected')
-    socket.emit('entered_game')
-
   });
 
-
   socket.on('player_bird',(data) => {
-    console.log(data.bird)
+    console.log('bird selections')
 
     if (data.bird === "yellowbird") {
       $('#player').addClass('bird')
@@ -142,7 +132,7 @@ function webSockets() {
 
 
   socket.on('play_again', (data) => {
-    console.log(data)
+    console.log('play again')
     $('.play-again').text(data.message)
     $('.play-again').css('text-align', 'center')
     $('.play-again').css('left', '')
@@ -156,6 +146,7 @@ function webSockets() {
   });
 
   socket.on('player_dead', (data) => {
+    console.log('player dead')
     if (data.username === USERNAME) {
       $('#player').hide()
     } else {
