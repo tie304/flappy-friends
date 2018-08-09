@@ -17,8 +17,30 @@
   </head>
   <body>
 
+    <!-- Image and text -->
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="">
+      {% if session['email'] %}
+    {{session['username']}}
+    {% endif %}
+    </a>
+
+    <div class="login-signout float-right">
+      {% if session['email'] %}
+      <a href="/users/logout">
+        <button class="btn btn-primary" id="dashboard--start_matchmake-button">Logout</button>
+      </a>
+      {% else %}
+      <a href="/users/login">
+        <button class="btn btn-primary" id="dashboard--start_matchmake-button">Login</button>
+      </a>
+      {% endif %}
+    </div>
+  </nav>
+
     <div class="container signin-container">
-      <h1>Flappy Friends</h1>
+          <h1> <img src="{{url_for('static',filename='assets/yellowbird-select.png')}}"/> Flappy Friends <img src="{{url_for('static',filename='assets/redbird-select.png')}}"/></h1>
+      <div class="login--form-wrapper">
       <form method="post">
         <div class="input-group input-group-lg" style="margin-top: 5rem">
           <div class="input-group-prepend">
@@ -28,14 +50,13 @@
         </div>
         <div class="input-group input-group-lg" style="margin-top: 5rem">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-lg">password</span>
+            <span class="input-group-text" id="inputGroup-sizing-lg">Password</span>
           </div>
           <input type="password" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" name="password">
         </div>
-
-
         <button type="submit" class="signin-submit-button btn-lg">Play Now!</button>
       </form>
+    </div>
       {% if error_message %}
         <h2 style="color: red">{{error_message}}</h2>
       {% endif %}

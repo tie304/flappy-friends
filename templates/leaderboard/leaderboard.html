@@ -16,13 +16,33 @@
     </script>
   </head>
   <body>
+    <!-- Image and text -->
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="">
+    {{session['username']}}
+    </a>
+
+    <div class="login-signout float-right">
+      {% if session['email'] %}
+      <a href="/users/logout">
+        <button class="btn btn-primary" id="dashboard--start_matchmake-button">Logout</button>
+      </a>
+      {% else %}
+      <a href="/users/login">
+        <button class="btn btn-primary" id="dashboard--start_matchmake-button">Login</button>
+      </a>
+      {% endif %}
+    </div>
+  </nav>
 
     <div class="leaderboard">
-      <h1>Leaderboard Top 25</h1>
+      <div class="leaderboard--header">
+      <h1>Top 25</h1>
       <input type="text" placeholder="Search by Name or Email" id="leaderboard--search_input"/><br>
       <button id="leaderboard--search_button" class="btn btn-primary">Search</button>
-      <div class="leaderboard--header">
+      <div class="leaderboard--messages">
       </div>
+    </div>
       <div class="container">
         <div class="list-group" id="leaderboard--score-list">
           {% for item in leaders %}

@@ -18,10 +18,29 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light">
+      <a class="navbar-brand" href="">
+        {% if session['email'] %}
+      {{session['username']}}
+      {% endif %}
+      </a>
+
+      <div class="login-signout float-right">
+        {% if session['email'] %}
+        <a href="/users/logout">
+          <button class="btn btn-primary" id="dashboard--start_matchmake-button">Logout</button>
+        </a>
+        {% else %}
+        <a href="/users/login">
+          <button class="btn btn-primary" id="dashboard--start_matchmake-button">Login</button>
+        </a>
+        {% endif %}
+      </div>
+    </nav>
     <div class="landing-page-container">
       <div class="container" id="landing-container">
         <div class="jumbotron">
-          <h1 class="display-4">Flappy Friends</h1>
+          <h1 class="display-4">Login To Flappy Friends</h1>
           <p class="lead">Will you survive?</p>
           <hr class="my-4">
           <p>A reccreation of "Flappy Bird", only it's multiplayer. Play in real time with your friends... or your enimies.</p>

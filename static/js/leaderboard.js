@@ -35,7 +35,7 @@ class Leaderboard {
 
   displaySearchResults(results) {
     $('#leaderboard--score-list').empty()
-    $('.leaderboard--header').empty()
+    $('.leaderboard--messages').empty()
     if (results.length > 0) {
       results.forEach((result) => {
         $('#leaderboard--score-list').append(`
@@ -57,7 +57,7 @@ class Leaderboard {
         </div>`)
       });
     } else {
-      $('.leaderboard--header').append('<h1>No players with that name or email</h1>')
+      $('.leaderboard--messages').append('<h1>No players with that name or email</h1>')
     }
   }
 }
