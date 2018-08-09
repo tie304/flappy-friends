@@ -71,7 +71,8 @@ var test_time = Date.now()
 var loopGameloop;
 var loopPipeloop;
 var multiplayerLoop
-$(document).ready(function() {
+
+$(window).load(() => {
 
   webSockets()
   if (window.location.search == "?debug")
@@ -87,6 +88,7 @@ $(document).ready(function() {
 
 
 });
+
 
 function webSockets() {
   var clients = []
