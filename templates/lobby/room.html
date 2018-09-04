@@ -18,7 +18,7 @@
 </head>
 
 <body class="lobby--body">
-  <!-- Image and text -->
+<!-- navigation -->
   <nav class="navbar navbar-light">
     <a class="navbar-brand" href="">
   {{session['username']}}
@@ -39,25 +39,20 @@
   <div class="lobby">
     <div class="container">
       <div class="lobby-dashboard-inner">
-
         <div class="start">
           <button id="ready_to_play" type="button" class="btn btn-success">Ready</button>
         </div>
-
-        <h2 id="lobby--waiting-info">Waiting for other player...</h2>
-
+        <h2 id="lobby--waiting-info">Waiting for another player...</h2>
         <div class="lobby--choose_bird">
           <h2>Select Your Bird</h2>
           <img id="yellowbird" src="{{url_for('static',filename='assets/yellowbird-select.png')}}" />
           <img id="redbird" src="{{url_for('static',filename='assets/redbird-select.png')}}" />
         </div>
-
         <div class="row">
           <div class="col">
             <ul id="lobby--message_board">
             </ul>
           </div>
-
         </div>
       </div>
     </div>
@@ -65,17 +60,18 @@
 
 
 
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-  <script src="{{url_for('static',filename='js/lobby.js')}}"></script>
+  <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+  <script src="{{url_for('static',filename='js/lobby.js')}}"></script>-->
 
 
 
 
+  <script src="{{url_for('static',filename='dist/lobby-bundle.js')}}"></script>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
 
 </body>
 

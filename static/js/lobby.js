@@ -1,4 +1,5 @@
-
+import $ from 'jquery'
+import io from 'socket.io-client';
 
 class Lobby {
   constructor() {
@@ -16,7 +17,7 @@ class Lobby {
     this.socket.on('connect', () => {
         this.runSockets()
         this.eventListen()
-    })
+    });
   }
 
   eventListen() {
@@ -106,4 +107,5 @@ class Lobby {
     $('#ready_to_play').text('waiting on other player').off()
   }
 }
-new Lobby()
+
+module.exports = new Lobby()

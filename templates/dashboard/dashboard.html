@@ -22,7 +22,7 @@
     <a class="navbar-brand" href="">
     {{session['username']}}
     </a>
-    
+
     <div class="login-signout float-right">
       {% if session['email'] %}
       <a href="/users/logout">
@@ -68,33 +68,9 @@
             <a href="{{url_for('leaderboard.leaderboard')}}" id="dashboard--leaderboard_button" class="btn btn-primary"> 💯 Leaderboard 💯</a>
       </div>
     </div>
-
-
-
     </div>
-      <script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
-      <script>
 
-        window.onload = function() {
-          new Dashboard({{stats['total_score']}},{{stats['total_wins']}},{{stats['total_defeats']}})
-        }
-
-
-
-
-      </script>
-
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script src="{{url_for('static',filename='dist/vendors~dashboard~leaderboard-bundle.js')}}"></script>
+    <script src="{{url_for('static',filename='dist/dashboard-bundle.js')}}"></script>
   </body>
 </html>

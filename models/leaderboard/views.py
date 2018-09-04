@@ -14,7 +14,6 @@ leaderboard_blueprint = Blueprint('leaderboard', __name__)
 
 
 @leaderboard_blueprint.route('/', methods=['GET'])
-
 @requires_login
 def leaderboard():
     leaders = Leaderboard().fetch_leaders()

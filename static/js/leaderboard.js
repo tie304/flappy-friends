@@ -1,7 +1,8 @@
+import $ from 'jquery';
 
 class Leaderboard {
-  constructor(postUrl) {
-    this.postUrl = postUrl
+  constructor() {
+    this.postUrl = '/leaderboard/search'
     this.init()
   }
 
@@ -29,7 +30,7 @@ class Leaderboard {
       success: (results) => {
         this.displaySearchResults(results)
       }
-    })
+    });
 
   }
 
@@ -61,3 +62,5 @@ class Leaderboard {
     }
   }
 }
+
+module.exports = new Leaderboard()

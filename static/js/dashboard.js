@@ -1,13 +1,39 @@
+import $ from 'jquery';
+
+
 class Dashboard {
-  constructor(total_score, total_wins, total_defeats) {
-    this.totalScore = String(total_score);
-    this.totalWins = String(total_wins);
-    this.totalDefeats = String(total_defeats);
-    this.renderScores()
+  constructor() {
+
+    this.totalScore = null;
+    this.totalWins = null;
+    this.totalDefeats = null;
+
+
+    $(document).ready(() => {
+      this.getUserScores('./player_stats')
+    });
+
+    
     this.addClickListiners()
   }
 
 
+  async getUserScores(url) {
+    console.log('getting scores')
+    await $.ajax({
+        url: url,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (data) => {
+          console.log(data)
+          this.totalScore = String(data.stats.total_score)
+          this.totalWins = String(data.stats.total_wins)
+          this.totalDefeats = String(data.stats.total_defeats)
+          this.renderScores()
+        }
+      });
+  }
 
   renderScores() {
 
@@ -41,3 +67,5 @@ class Dashboard {
     })
   }
 }
+
+module.exports = new Dashboard()
