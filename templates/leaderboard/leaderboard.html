@@ -1,25 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{url_for('static',filename='css/app/app.css')}}" rel="stylesheet">
-    <title>Hello, world!</title>
-    <script>
-      //APP GLOBALS
-      const USERNAME = "{{session['username']}}"
-      console.log(USERNAME)
-    </script>
-  </head>
-  <body>
-    <!-- Image and text -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link href="{{url_for('static',filename='css/app/app.css')}}" rel="stylesheet">
+  <title>Flappy Friends</title>
+  <script>
+    //APP GLOBALS
+    const USERNAME = "{{session['username']}}"
+    console.log(USERNAME)
+  </script>
+</head>
+
+<body>
+  <!-- Image and text -->
   <nav class="navbar navbar-light">
     <a class="navbar-brand" href="">
-    {{session['username']}}
+      {{session['username']}}
     </a>
 
     <div class="login-signout float-right">
@@ -35,57 +38,58 @@
     </div>
   </nav>
 
-    <div class="leaderboard">
-      <div class="leaderboard--header">
+  <div class="leaderboard">
+    <div class="leaderboard--header">
       <h1>Top 25</h1>
-      <input type="text" placeholder="Search by Name or Email" id="leaderboard--search_input"/><br>
+      <input type="text" placeholder="Search by Name or Email" id="leaderboard--search_input" /><br>
       <button id="leaderboard--search_button" class="btn btn-primary">Search</button>
       <div class="leaderboard--messages">
       </div>
     </div>
-      <div class="container">
-        <div class="list-group" id="leaderboard--score-list">
-          {% for item in leaders %}
-          <div class="list-group-item list-group-item-action">
-            <div class="row">
-              <div class="col-md-3">
-                {% if leaders.index(item) == 0 %}
-                  <img src="../../static/assets/medal_gold.png">
-                  <p>{{item.display_name}}</p>
-                {% elif leaders.index(item) == 1 %}
-                  <img src="../../static/assets/medal_silver.png">
-                  <p>{{item.display_name}}</p>
-                {% elif leaders.index(item) == 2%}
-                  <img src="../../static/assets/medal_bronze.png">
-                  <p>{{item.display_name}}</p>
-                {% else %}
-                  <p>{{item.display_name}}</p>
-                {% endif %}
-              </div>
-              <div class="col-md-3">
+    <div class="container">
+      <div class="list-group" id="leaderboard--score-list">
+        {% for item in leaders %}
+        <div class="list-group-item list-group-item-action">
+          <div class="row">
+            <div class="col-md-3">
+              {% if leaders.index(item) == 0 %}
+              <img src="../../static/assets/medal_gold.png">
+              <p>{{item.display_name}}</p>
+              {% elif leaders.index(item) == 1 %}
+              <img src="../../static/assets/medal_silver.png">
+              <p>{{item.display_name}}</p>
+              {% elif leaders.index(item) == 2%}
+              <img src="../../static/assets/medal_bronze.png">
+              <p>{{item.display_name}}</p>
+              {% else %}
+              <p>{{item.display_name}}</p>
+              {% endif %}
+            </div>
+            <div class="col-md-3">
               <p> Total Wins: {{item.total_wins}}</p>
-              </div>
-              <div class="col-md-3">
-                <p> Total Defeats: {{item.total_defeats}} </p>
-              </div>
-              <div class="col-md-3">
-                <p> Total Score: {{item.total_score}} </p>
-              </div>
+            </div>
+            <div class="col-md-3">
+              <p> Total Defeats: {{item.total_defeats}} </p>
+            </div>
+            <div class="col-md-3">
+              <p> Total Score: {{item.total_score}} </p>
             </div>
           </div>
-          {% endfor %}
         </div>
+        {% endfor %}
       </div>
     </div>
+  </div>
 
-    <script src="{{url_for('static',filename='dist/vendors~dashboard~leaderboard-bundle.js')}}"></script>
-    <script src="{{url_for('static',filename='dist/leaderboard-bundle.js')}}"></script>
+  <script src="{{url_for('static',filename='dist/vendors~dashboard~leaderboard-bundle.js')}}"></script>
+  <script src="{{url_for('static',filename='dist/leaderboard-bundle.js')}}"></script>
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-  </body>
+
+</body>
+
 </html>

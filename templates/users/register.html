@@ -1,27 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{url_for('static',filename='css/app/app.css')}}" rel="stylesheet">
-    <title>Hello, world!</title>
-    <script>
-      //APP GLOBALS
-      const USERNAME = "{{session['username']}}"
-      console.log(USERNAME)
-    </script>
-  </head>
-  <body>
-    <!-- Image and text -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link href="{{url_for('static',filename='css/app/app.css')}}" rel="stylesheet">
+  <title>Flappy Friends</title>
+  <script>
+    //APP GLOBALS
+    const USERNAME = "{{session['username']}}"
+    console.log(USERNAME)
+  </script>
+</head>
+
+<body>
+  <!-- Image and text -->
   <nav class="navbar navbar-light">
     <a class="navbar-brand" href="">
       {% if session['email'] %}
-    {{session['username']}}
-    {% endif %}
+      {{session['username']}}
+      {% endif %}
     </a>
 
     <div class="login-signout float-right">
@@ -37,9 +40,9 @@
     </div>
   </nav>
 
-    <div class="container signin-container">
-      <h1> <img src="{{url_for('static',filename='assets/yellowbird-select.png')}}"/> Flappy Friends <img src="{{url_for('static',filename='assets/redbird-select.png')}}"/></h1>
-      <div class="login--form-wrapper">
+  <div class="container signin-container">
+    <h1> <img src="{{url_for('static',filename='assets/yellowbird-select.png')}}" /> Flappy Friends <img src="{{url_for('static',filename='assets/redbird-select.png')}}" /></h1>
+    <div class="login--form-wrapper">
       <form method="post">
         <div class="input-group input-group-lg" style="margin-top: 5rem">
           <div class="input-group-prepend">
@@ -62,24 +65,25 @@
         <br>
         <br>
         {% if error_message %}
-          <h2 style="color: red">{{error_message}}</h2>
+        <h2 style="color: red">{{error_message}}</h2>
         {% endif %}
         <button type="submit" class="signin-submit-button btn-lg">Play Now!</button>
       </form>
     </div>
-    </div>
+  </div>
 
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
-  </body>
+</body>
+
 </html>
