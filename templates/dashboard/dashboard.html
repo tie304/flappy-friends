@@ -1,26 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{url_for('static',filename='css/app/app.css')}}" rel="stylesheet">
-    <title>Hello, world!</title>
-    <script>
-      //APP GLOBALS
-      const USERNAME = "{{session['username']}}"
-      console.log(USERNAME)
-    </script>
-  </head>
-  <body>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Image and text -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link href="{{url_for('static',filename='css/app/app.css')}}" rel="stylesheet">
+  <title>Flappy Friends</title>
+  <script>
+    //APP GLOBALS
+    const USERNAME = "{{session['username']}}"
+    console.log(USERNAME)
+  </script>
+</head>
+
+<body>
+
+  <!-- Image and text -->
   <nav class="navbar navbar-light">
     <a class="navbar-brand" href="">
-    {{session['username']}}
+      {{session['username']}}
     </a>
 
     <div class="login-signout float-right">
@@ -38,39 +41,41 @@
 
 
 
-    <div class="container dashboard">
-        <div class="card dashboard--matchmake">
-          <img class="card-img-top" src="{{url_for('static',filename='assets/images/flappy_multiplayer.gif')}}" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Matchmake</h5>
-            <p class="card-text">Search for a random game</p>
-            <form method="post" id="dashboard--matchmake_form">
-              <button type="submit" class="btn btn-primary" id="dashboard--start_matchmake-button">Start</button>
-            </form>
-          </div>
-        </div>
-
-      <div class="dashboard--statistics">
-        <div class="row">
-          <div class="col-sm">
-            <h2>Total Score</h2>
-            <div id="dashboard--total_score"></div>
-          </div>
-          <div class="col-sm">
-              <h2>Total Wins</h2>
-              <div id="dashboard--total_wins"></div>
-          </div>
-          <div class="col-sm">
-              <h2>Total Defeats</h2>
-              <div id="dashboard--total_defeats"></div>
-          </div>
-        </div>
-            <a href="{{url_for('leaderboard.leaderboard')}}" id="dashboard--leaderboard_button" class="btn btn-primary"> 💯 Leaderboard 💯</a>
+  <div class="container dashboard">
+    <div class="card dashboard--matchmake">
+      <img class="card-img-top" src="{{url_for('static',filename='assets/images/flappy_multiplayer.gif')}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Matchmake</h5>
+        <p class="card-text">Search for a random game</p>
+        <form method="post" id="dashboard--matchmake_form">
+          <button type="submit" class="btn btn-primary" id="dashboard--start_matchmake-button">Start</button>
+        </form>
       </div>
     </div>
-    </div>
 
-    <script src="{{url_for('static',filename='dist/vendors~dashboard~leaderboard-bundle.js')}}"></script>
-    <script src="{{url_for('static',filename='dist/dashboard-bundle.js')}}"></script>
-  </body>
+    <div class="dashboard--statistics">
+      <div class="row">
+        <div class="col-sm">
+          <h2>Total Score</h2>
+          <div id="dashboard--total_score"></div>
+        </div>
+        <div class="col-sm">
+          <h2>Total Wins</h2>
+          <div id="dashboard--total_wins"></div>
+        </div>
+        <div class="col-sm">
+          <h2>Total Defeats</h2>
+          <div id="dashboard--total_defeats"></div>
+        </div>
+      </div>
+      <a href="{{url_for('leaderboard.leaderboard')}}" id="dashboard--leaderboard_button" class="btn btn-primary"> 💯
+        Leaderboard 💯</a>
+    </div>
+  </div>
+  </div>
+
+  <script src="{{url_for('static',filename='dist/vendors~dashboard~leaderboard-bundle.js')}}"></script>
+  <script src="{{url_for('static',filename='dist/dashboard-bundle.js')}}"></script>
+</body>
+
 </html>
