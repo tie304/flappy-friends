@@ -6,17 +6,11 @@ from models.games.games import Games
 from decorators.req_login import requires_login
 
 
-
 game_blueprint = Blueprint('game', __name__)
 
 
-
 @game_blueprint.route('/<string:game_id>')
-
 @requires_login
 def game_index(game_id):
-    #Games().add_game(game_id)
-
-
 
     return render_template('game/game.html')

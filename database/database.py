@@ -1,15 +1,19 @@
 import pymongo
 from config import Config
 
+"""
+Database object for more easily interacting with mongodb
+
+"""
+
 
 class Database(object):
-
 
     DATABASE = None
 
     @staticmethod
-    def initialize(URI,database_name):
-        #only way to access it is through database object
+    def initialize(URI, database_name):
+        # only way to access it is through database object
         client = pymongo.MongoClient(URI)
         Database.DATABASE = client[database_name]
         print(Database.DATABASE)

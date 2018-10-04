@@ -6,19 +6,17 @@
 body {
   background-color: #dfd796;
   height: 100vh;
-  background: url("../../assets/images/background_lobby.svg");
+  background: url("../assets/images/background_lobby.svg");
   background-color: #dfd796;
 }
 .navbar {
   background-color: #fff;
 }
 
-/*_______________________Waiting Room________________________________*/
-
 /*LANDING PAGE------------------------------------------------- LANDING PAGE*/
 
 .landing-page-container {
-  background: url("../../assets/images/flappybird_fulmer.jpg");
+  background: url("../assets/images/flappybird_fulmer.jpg");
   background-size: cover;
   height: 100vh;
   overflow: auto;
@@ -141,7 +139,10 @@ body {
   background: #fff;
   transition: all 0.3s ease;
 }
+
 /*Leaderboard END----------------------------------------------------- END*/
+
+/*Waiting room ---------------------------------------------*/
 .lobby-dashboard-inner {
   margin-top: 12rem;
   border: 5px solid #9de759;
@@ -169,7 +170,6 @@ body {
 .lobby--choose_bird {
   display: none;
 }
-/*Waiting room ---------------------------------------------*/
 #lobby--message_board li {
   padding: 50px 50px;
   margin-top: 20px;

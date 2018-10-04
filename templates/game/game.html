@@ -4,22 +4,21 @@
 <head>
   <title>Flappy Friends</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="author" content="Nebez Briefkani" />
-  <meta name="description" content="play floppy bird. a remake of popular game flappy bird using just html/css/js" />
-  <meta name="keywords" content="flappybird,flappy,bird,floppybird,floppy,html,html5,css,css3,js,javascript,jquery,github,nebez,briefkani,nebezb,open,source,opensource" />
+  <meta name="author" content="Tyler Hanson" />
+  <meta name="description" content="play Flappy Friends a remake of popular game flappy bird using just html/css/js" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
   <!-- Open Graph tags -->
-  <meta property="og:title" content="Floppy Bird" />
-  <meta property="og:description" content="play floppy bird. a remake of popular game flappy bird using just html/css/js" />
+  <meta property="og:title" content="Flappy Friends" />
+  <meta property="og:description" content="play Flappy fiends. a remake of popular game flappy bird using just html/css/js in real time" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="http://nebez.github.io/floppybird/assets/thumb.png" />
-  <meta property="og:url" content="http://nebez.github.io/floppybird/" />
-  <meta property="og:site_name" content="Floppy Bird" />
+
+  <meta property="og:site_name" content="Flappy Friends" />
 
   <!-- Style sheets -->
   <link href="{{url_for('static',filename='css/reset.css')}}" rel="stylesheet">
-  <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='css/game.css')}}" rel="stylesheet">
 
 </head>
 
@@ -67,18 +66,11 @@
   <div class="boundingbox" id="playerbox"></div>
   <div class="boundingbox" id="pipebox"></div>
 
-
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-
-
-  <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
-  <script src="{{url_for('static',filename='js/jquery.transit.min.js')}}"></script>
   <script>
     const USERNAME = "{{session['username']}}"
     console.log(USERNAME)
   </script>
-  <script src="{{url_for('static',filename='js/vendor/buzz.min.js')}}"></script>
-  <script src="{{url_for('static',filename='js/game.js')}}"></script>
+  <script src="{{url_for('static',filename='dist/game-bundle.js')}}"></script>
 
 </body>
 

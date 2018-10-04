@@ -9,11 +9,15 @@ from database.database import Database
 from models.player.player import Player
 
 
+"""
+Single Game object responsible for managing each game instance
+
+"""
 
 
 class Game(object):
 
-    def __init__(self,game_id, players ,socketio):
+    def __init__(self, game_id, players, socketio):
         self.game_id = game_id
         self.players = players
         self.pipes = []
@@ -23,13 +27,11 @@ class Game(object):
     def __repr__(self):
         return f"<Game with {len(self.players)} players>"
 
-
-
     def check_players_in_game(self):
         total_players_ready = 0
         for player in self.players:
             if player.in_game == True:
-                total_players_ready +=1
+                total_players_ready += 1
         if total_players_ready == 2:
             self.render_pipes()
             return True
@@ -37,11 +39,12 @@ class Game(object):
 
     def render_pipes(self):
         for i in range(100):
-            fly_area = 420 #TODO dynamic fly area
+            fly_area = 420  # TODO dynamic fly area
             padding = 80
             pipeheight = 90
             constraint = fly_area - pipeheight - (padding * 2)
-            top_height = int(math.floor((random.random()) * constraint) + padding)
+            top_height = int(math.floor(
+                (random.random()) * constraint) + padding)
             bottom_height = (fly_area - pipeheight) - top_height
             string = f"<div class='pipe animated'><div class='pipe_upper' style='height: {top_height}px;'> </div> <div class='pipe_lower' style='height: {bottom_height}px'</div></div>"
             self.pipes.append(string)
@@ -56,8 +59,7 @@ class Game(object):
         else:
             return False
 
-
-    def play_again(self,sid):
+    def play_again(self, sid):
         play_again = 0
         for player in self.players:
             if player.sid == sid:
@@ -77,15 +79,15 @@ class Game(object):
             self.pipes = []
         return True
 
-    def remove_player(self,sid):
+    def remove_player(self, sid):
         for player in self.players:
             if sid == player.sid:
                 player_index_position = self.players.index(player)
                 del self.players[player_index_position]
 
-
-    def run_game_sockets(self,socketio):
+    def run_game_sockets(self, socketio):
         print('running sockets for game:' + self.game_id)
+
         @socketio.on('connect', namespace=f"/{self.game_id}")
         def connect():
             print("CONNECTING INGAME")
@@ -100,24 +102,23 @@ class Game(object):
             print(emit_player_bird)
             emit('player_bird', {'bird': emit_player_bird}, room=request.sid)
 
-
         @socketio.on('disconnect', namespace=f"/{self.game_id}")
         def disconnect():
             print('DISCONNECTING INGAME')
             username = session['username']
             self.remove_player(request.sid)
-            emit('message',{'user': session['username'], 'message': username + ' has left the game.'})
-
+            emit('message', {
+                 'user': session['username'], 'message': username + ' has left the game.'})
 
         @socketio.on('entered_game', namespace=f"/{self.game_id}")
-
         def initalize_game():
             for player in self.players:
                 if player.sid == request.sid:
                     player.in_game = True
             if self.check_players_in_game():
                 print('entered game')
-                emit('initalize_game', {'pipes': self.pipes, 'start':3000 }, broadcast=True)
+                emit('initalize_game', {
+                     'pipes': self.pipes, 'start': 3000}, broadcast=True)
 
         @socketio.on('player_position', namespace=f"/{self.game_id}")
         def player_position(data):
@@ -144,10 +145,11 @@ class Game(object):
                     player.alive = False
                     player_status = self.check_players_alive()
                     if player_status:
-                        #get player object with highest score
+                        # get player object with highest score
                         winner = max(player_status, key=attrgetter('score'))
 
-                        emit('game_ended', [{'name': p.name, 'score': p.score} for p in player_status] , broadcast=True)
+                        emit('game_ended', [{'name': p.name, 'score': p.score}
+                                            for p in player_status], broadcast=True)
 
                         for player in player_status:
                             if player == winner:
@@ -157,15 +159,16 @@ class Game(object):
                                 player.update_score()
                                 player.update_defeats()
                     else:
-                        emit('player_dead', {'message': f'player {player.name} is dead', 'username': player.name}, broadcast=True)
+                        emit('player_dead', {
+                             'message': f'player {player.name} is dead', 'username': player.name}, broadcast=True)
                     break
-
 
         @socketio.on('play_again', namespace=f"/{self.game_id}")
         def play_again():
             for player in self.players:
                 if player.sid != request.sid:
-                    emit('play_again', {'message': f'Other player wants to play again!'}, room=player.sid)
+                    emit('play_again', {
+                         'message': f'Other player wants to play again!'}, room=player.sid)
             status = self.play_again(request.sid)
             emit('play_again', {})
             if status:

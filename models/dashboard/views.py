@@ -8,9 +8,7 @@ from models.dashboard.dashboard import Dashboard
 dashboard_blueprint = Blueprint('dashboard', __name__)
 
 
-
-
-@dashboard_blueprint.route('/player_stats',methods= ['GET'])
+@dashboard_blueprint.route('/player_stats', methods=['GET'])
 @requires_login
 def get_player_stats():
     print('getting stats')
@@ -18,7 +16,7 @@ def get_player_stats():
     return jsonify(stats)
 
 
-@dashboard_blueprint.route('/<string:username>',methods= ['GET','POST'])
+@dashboard_blueprint.route('/<string:username>', methods=['GET', 'POST'])
 @requires_login
 def dashboard(username):
     if request.method == "POST":
